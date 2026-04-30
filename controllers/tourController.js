@@ -1,95 +1,102 @@
-const fs = require('fs');
+let Tour = require('./../models/tourModel');
+// IMPORT DATA
 
-// CONFIGS
-const tours = JSON.parse(
-  fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`),
-);
-
-exports.checkTourId = (req, res, next, val) => {
-  if (req.params.id * 1 > tours.length) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'invalid id',
-    });
-  }
-
-  next();
-};
-
-exports.checkBody = (req, res, next) => {
-  const body = req.body;
-  if (body.name && body.price >= 0) {
-    next();
-  } else {
-    return res.status(400).json({
-      status: 'failed',
-      message: 'invalid request body (name or price missing)',
-    });
-  }
-};
+// exports.checkBody = (req, res, next) => {
+//   // const body = req.body;
+//   // if (body.name && body.price >= 0) {
+//   //   next();
+//   // } else {
+//   //   return res.status(400).json({
+//   //     status: 'failed',
+//   //     message: 'invalid request body (name or price missing)',
+//   //   });
+//   // }
+// };
 
 // HANDLERS
 
-exports.getAllTours = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    results: tours.length,
-    data: {
-      tours,
-    },
-  });
-  console.log('request time', req.requestTime);
+exports.getAllTours = async (req, res) => {
+  try {
+    const tours = await Tour.find();
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tours,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'error',
+    });
+  }
 };
 
-exports.postTour = (req, res) => {
-  const newId = tours.at(-1).id + 1;
-  const newTour = Object.assign({ id: newId }, req.body);
-
-  tours.push(newTour);
-
-  fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
-    JSON.stringify(tours, null, 2),
-    (err) => {
-      res.status(201).send({ status: 'success', data: { newTour } });
-      console.log('recieved');
-    },
-  );
+exports.postTour = async (req, res) => {
+  try {
+    const newTour = await Tour.create(req.body);
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tour: newTour,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'invalid data',
+    });
+  }
 };
 
-exports.getTourById = (req, res) => {
-  console.log(req.params);
-
-  tour = tours.find((tour) => tour.id === Number(req.params.id));
-
-  res.status(200).json({
-    status: 'success',
-    data: { tour },
-  });
+exports.getTourById = async (req, res) => {
+  try {
+    const tour = await Tour.findById(req.params.id);
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tour,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'operation failed',
+    });
+  }
 };
 
-exports.updateTourById = (req, res) => {
-  const newId = tours[req.params.id].id;
-  newTours = tours.map((tour) =>
-    tour.id === Number(req.params.id)
-      ? Object.assign({ id: newId }, req.body)
-      : tour,
-  );
-
-  res.status(201).json({
-    status: 201,
-    data: {
-      newTours,
-    },
-  });
+exports.updateTourById = async (req, res) => {
+  try {
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tour,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'operation failed',
+    });
+  }
 };
 
-exports.deleteTourById = (req, res) => {
-  newTours = tours.filter((tour) => tour.id != req.params.id);
-  console.log(newTours);
-
-  res.status(201).json({
-    status: 201,
-    data: null,
-  });
+exports.deleteTourById = async (req, res) => {
+  try {
+    const tour = await Tour.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: 'operation failed',
+    });
+  }
 };
