@@ -8,13 +8,7 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD,
 );
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  })
-  .then(() => console.log('DB CONNECTION SUCCESSFUL'));
+mongoose.connect(DB).then(() => console.log('DB CONNECTION SUCCESSFUL'));
 
 const app = require('./app');
 
