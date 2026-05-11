@@ -202,7 +202,7 @@ exports.getTourStats = async (req, res) => {
   } catch (err) {
     res.status(400).json({
       status: 'fail',
-      message: 'operation failed',
+      message: err.message,
     });
   }
 };
@@ -260,50 +260,3 @@ exports.getMonthlyPlan = async (req, res) => {
     });
   }
 };
-
-// exports.assignment = async (req, res) => {
-//   try {
-//     const result = await Tour.aggregate([
-//       {
-//         $match: {
-//           difficulty: { $in: ['medium', 'difficult'] },
-//         },
-//       },
-
-//       {
-//         $group: {
-//           _id: '$difficulty',
-//           totalTours: { $sum: 1 },
-//           avgPrice: { $avg: '$price' },
-//           tourNames: { $push: '$name' },
-//         },
-//       },
-
-//       {
-//         $sort: {
-//           avgPrice: -1,
-//         },
-//       },
-
-//       {
-//         $addFields: { label: { $toUpper: '$_id' } },
-//       },
-//       {
-//         $project: { _id: 0 },
-//       },
-//       {
-//         $limit: 2,
-//       },
-//     ]);
-
-//     res.status(200).json({
-//       status: 'success',
-//       data: result,
-//     });
-//   } catch (err) {
-//     res.status(400).json({
-//       status: 'fail',
-//       message: err.message,
-//     });
-//   }
-// };
