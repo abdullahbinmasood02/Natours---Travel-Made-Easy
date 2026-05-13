@@ -1,5 +1,5 @@
 const catchAsync = require('./../utils/catchAsync');
-
+const appError = require('./../utils/appError');
 let Tour = require('./../models/tourModel');
 exports.aliasTopTours = (req, res, next) => {
   Object.defineProperty(req, 'query', {
@@ -102,6 +102,9 @@ exports.postTour = catchAsync(async (req, res, next) => {
 
 exports.getTourById = catchAsync(async (req, res, next) => {
   const tour = await Tour.findById(req.params.id);
+
+  if (!tour) return next(new appError('No tour find with that id', 404));
+
   res.status(200).json({
     status: 'success',
     data: {
@@ -115,6 +118,7 @@ exports.updateTourById = catchAsync(async (req, res, next) => {
     new: true,
     runValidators: true,
   });
+  if (!tour) return next(new appError('No tour find with that id', 404));
   res.status(200).json({
     status: 'success',
     data: {
@@ -125,6 +129,8 @@ exports.updateTourById = catchAsync(async (req, res, next) => {
 
 exports.deleteTourById = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndDelete(req.params.id);
+  if (!tour) return next(new appError('No tour find with that id', 404));
+
   res.status(200).json({
     status: 'success',
     data: null,
