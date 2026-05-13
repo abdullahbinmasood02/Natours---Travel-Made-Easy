@@ -10,10 +10,11 @@ const tourController = require('../controllers/tourController');
 router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
 // router.route('/assignment').get(tourController.assignment);
 router.route('/tour-stats').get(tourController.getTourStats);
-router.route('/').get(tourController.getAllTours).post(tourController.postTour);
 router
   .route('/top-5-cheap')
   .get(tourController.aliasTopTours, tourController.getAllTours);
+router.route('/').get(tourController.getAllTours).post(tourController.postTour);
+
 router
   .route('/:id')
   .get(tourController.getTourById)
