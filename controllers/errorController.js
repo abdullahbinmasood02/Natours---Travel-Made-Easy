@@ -12,7 +12,6 @@ function handleValidationErrorDb(err) {
 }
 
 function handleDuplicateFieldsDB(err) {
-  console.log('_______________', err, '_______________');
   const name = err.keyValue.name;
   const message = `Duplicate fields value: ${name}. please use another value`;
   return new appError(message, 400);
@@ -26,6 +25,10 @@ const sendErrorDev = (err, res) => {
     stack: err.stack,
   });
 };
+
+function handleJsonTokenError() {
+  return new appError('Invalid token. Please login again', 401);
+}
 
 const sendErrorProd = (err, res) => {
   //operational error
@@ -44,6 +47,10 @@ const sendErrorProd = (err, res) => {
   }
 };
 
+function handleJwtExpiredError() {
+  return new appError('your token has expired. please login again', 401);
+}
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
@@ -59,7 +66,8 @@ module.exports = (err, req, res, next) => {
       error = handleDuplicateFieldsDB(error);
     } else if (err.name === 'ValidationError') {
       error = handleValidationErrorDb(err);
-    }
+    } else if (err.name === 'JsonWebTokenError') error = handleJsonTokenError();
+    else if (err.name === 'TokenExpiredError') error = handleJwtExpiredError();
     sendErrorProd(error, res);
   }
 };
