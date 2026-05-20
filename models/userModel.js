@@ -52,6 +52,13 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+
+userSchema.pre('save', async function (next) {
   //only run this function if password was actually modified
   if (!this.isModified('password')) return next();
 
@@ -85,6 +92,10 @@ userSchema.methods.generatePasswordResetToken = function () {
     .digest('hex');
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+
+  console.log('PLAIN TOKEN:', token);
+  console.log('PLAIN TOKEN LENGTH:', token.length); // should be 64
+  console.log('HASH SAVED TO DB:  ', this.passwordResetToken);
   return token;
 };
 
