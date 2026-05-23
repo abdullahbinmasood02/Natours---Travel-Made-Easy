@@ -49,6 +49,16 @@ const userSchema = new mongoose.Schema({
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
+});
+
+userSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+  next();
 });
 
 userSchema.pre('save', async function (next) {
@@ -68,11 +78,8 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-userSchema.methods.correctPassword = async function (
-  candidatePassword,
-  sentPassword,
-) {
-  return await bcrypt.compare(candidatePassword, sentPassword);
+userSchema.methods.correctPassword = async function (dbPassword, sentPassword) {
+  return await bcrypt.compare(sentPassword, dbPassword);
 };
 
 userSchema.methods.changedPasswordAfter = function (JwtTimestamp) {
