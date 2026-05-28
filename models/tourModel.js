@@ -14,7 +14,7 @@ const tourSchema = new mongoose.Schema(
         'Tour name must have less than or equal to 40 characters',
       ],
       minlength: [10, 'tour name must have more or equal to 10 characters'],
-      validate: [validator.isAlpha, 'tour name must only contain characters'],
+      // validator.isAlpha was removed — it blocks names with spaces/numbers
     },
 
     slug: {
@@ -52,10 +52,6 @@ const tourSchema = new mongoose.Schema(
       default: 0,
     },
 
-    priceDiscount: {
-      type: Number,
-    },
-
     summary: {
       type: String,
       trim: true,
@@ -89,7 +85,7 @@ const tourSchema = new mongoose.Schema(
     images: [String],
     createdAt: {
       type: Date,
-      default: Date.now(),
+      default: Date.now, // function reference, not a call — evaluated per document
       select: false,
     },
     secretTour: {
@@ -121,6 +117,12 @@ const tourSchema = new mongoose.Schema(
         day: Number,
       },
     ],
+    guides: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'users',
+      },
+    ],
   },
 
   {
@@ -132,6 +134,14 @@ const tourSchema = new mongoose.Schema(
     },
   },
 );
+
+tourSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'guides',
+    select: '-__v -passwordChangedAt',
+  });
+  next();
+});
 
 tourSchema.pre('aggregate', function (next) {
   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
