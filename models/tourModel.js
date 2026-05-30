@@ -135,6 +135,11 @@ const tourSchema = new mongoose.Schema(
   },
 );
 
+tourSchema.virtual('reviews', {
+  ref: 'reviews',
+  foreignField: 'tour',
+  localField: '_id',
+});
 tourSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'guides',

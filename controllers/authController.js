@@ -123,7 +123,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const message = `forgot your password? submit a patch request with your new password and passwordConfirm to: ${resetURL}\n If you did'nt forget your password, please ignore this email `;
   try {
     await sendEmail({
-      email: user.email,
+      mail: user.email,
       subject: 'Your password reset token (valid for 10 min)',
       message,
     });
