@@ -154,7 +154,7 @@ tourSchema.pre('aggregate', function (next) {
 });
 
 tourSchema.pre(/^find/, function (next) {
-  this.find({ secretTour: { $ne: true } });
+  this.where({ secretTour: { $ne: true } });
   next();
 });
 
