@@ -1,6 +1,7 @@
 const userModel = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const factory = require('./handlerFactory');
 
 function filterObj(toFilter, ...args) {
   const keys = Object.keys(toFilter);
@@ -11,21 +12,9 @@ function filterObj(toFilter, ...args) {
   return newObj;
 }
 
-exports.getUserById = (req, res) => {
-  console.log('route not implemented');
+exports.getUserById = factory.getOne(userModel);
 
-  res.status(500).json({ message: 'route not defind' });
-};
-
-exports.getAllUsers = catchAsync(async (req, res) => {
-  const users = await userModel.find();
-  res.status(200).json({
-    status: 'success',
-    data: {
-      users,
-    },
-  });
-});
+exports.getAllUsers = factory.getAll(userModel);
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   if (req.body.password || req.body.passwordConfirm) {
@@ -62,17 +51,16 @@ exports.deleteMe = catchAsync(async function (req, res, next) {
   });
 });
 
-exports.updateUserById = (req, res) => {
-  console.log('route not implemented');
-  res.status(500).json({ message: 'route not defind' });
-};
+exports.updateUserById = factory.update(userModel);
 
-exports.deleteUserById = (req, res) => {
-  console.log('route not implemented');
-  res.status(500).json({ message: 'route not defind' });
-};
+exports.deleteUserById = factory.deleteOne(userModel);
 
 exports.postUser = (req, res) => {
   console.log('route not defined');
   res.status(500).json({ message: 'route not defind' });
+};
+
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
 };
