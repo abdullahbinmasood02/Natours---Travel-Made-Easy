@@ -7,7 +7,12 @@ const reviewRouter = require('../routes/reviewRoutes');
 // 4.1 routes
 // router.param('id', checkTourId);
 
+router
+  .route('/tours-within/:distance/center/:latlng/unit/:unit')
+  .get(tourController.getToursWithin);
 router.use('/:tourId/reviews', reviewRouter);
+
+router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances);
 
 router
   .route('/monthly-plan/:year')
