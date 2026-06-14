@@ -11,7 +11,12 @@ const reviewRouter = require('./routes/reviewRoutes');
 const app = express();
 const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
+const path = require('path');
 
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+//serving static files
+app.use(express.static(path.join(__dirname, 'public')));
 //set security headers
 app.use(helmet());
 
@@ -53,6 +58,12 @@ app.use(
   }),
 );
 
+app.use('/', (req, res) => {
+  res.status(200).render('base', {
+    tour: 'The forest hiker',
+    user: 'abm',
+  });
+});
 // MOUNTING ROUTERS
 
 app.use('/api/v1/tours', tourRouter);

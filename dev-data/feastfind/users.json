@@ -1,0 +1,83 @@
+[
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e001" },
+    "name": "Admin Master",
+    "email": "admin@feastfind.io",
+    "role": "admin",
+    "photo": "admin.jpg",
+    "password": "$2b$12$WApznUPhDubYoqKqA4bmJOaJqgMjPPG5bLGFtHINGDem7GgJJmRBm",
+    "passwordChangedAt": { "$date": "2025-12-01T00:00:00.000Z" },
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e002" },
+    "name": "Marco Rossi",
+    "email": "marco@feastfind.io",
+    "role": "owner",
+    "photo": "user-2.jpg",
+    "password": "$2b$12$WApznUPhDubYoqKqA4bmJOaJqgMjPPG5bLGFtHINGDem7GgJJmRBm",
+    "passwordChangedAt": { "$date": "2025-11-15T00:00:00.000Z" },
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e003" },
+    "name": "Yuki Tanaka",
+    "email": "yuki@feastfind.io",
+    "role": "owner",
+    "photo": "user-3.jpg",
+    "password": "$2b$12$WApznUPhDubYoqKqA4bmJOaJqgMjPPG5bLGFtHINGDem7GgJJmRBm",
+    "passwordChangedAt": { "$date": "2025-10-20T00:00:00.000Z" },
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e004" },
+    "name": "Sara Ahmed",
+    "email": "sara@feastfind.io",
+    "role": "customer",
+    "photo": "user-4.jpg",
+    "password": "$2b$12$WApznUPhDubYoqKqA4bmJOaJqgMjPPG5bLGFtHINGDem7GgJJmRBm",
+    "active": true,
+    "deliveryAddress": {
+      "type": "Point",
+      "coordinates": [-73.9857, 40.7484],
+      "address": "350 5th Ave, New York, NY 10118"
+    }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e005" },
+    "name": "James Wilson",
+    "email": "james@feastfind.io",
+    "role": "customer",
+    "photo": "user-5.jpg",
+    "password": "$2b$12$WApznUPhDubYoqKqA4bmJOaJqgMjPPG5bLGFtHINGDem7GgJJmRBm",
+    "active": true,
+    "deliveryAddress": {
+      "type": "Point",
+      "coordinates": [-118.2437, 34.0522],
+      "address": "200 Santa Monica Blvd, Los Angeles, CA 90401"
+    }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e006" },
+    "name": "Fatima Khan",
+    "email": "fatima@feastfind.io",
+    "role": "delivery-agent",
+    "photo": "user-6.jpg",
+    "password": "$2b$12$WApznUPhDubYoqKqA4bmJOaJqgMjPPG5bLGFtHINGDem7GgJJmRBm",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e007" },
+    "name": "Liam Chen",
+    "email": "liam@feastfind.io",
+    "role": "customer",
+    "photo": "user-7.jpg",
+    "password": "$2b$12$WApznUPhDubYoqKqA4bmJOaJqgMjPPG5bLGFtHINGDem7GgJJmRBm",
+    "active": true,
+    "deliveryAddress": {
+      "type": "Point",
+      "coordinates": [-122.4194, 37.7749],
+      "address": "1 Market St, San Francisco, CA 94105"
+    }
+  }
+]

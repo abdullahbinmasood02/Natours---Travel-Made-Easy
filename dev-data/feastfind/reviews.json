@@ -1,0 +1,154 @@
+[
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e301" },
+    "review": "Absolutely incredible risotto — the truffle aroma hit me the second the plate arrived. Service was impeccable, felt like dining in Rome.",
+    "rating": 5,
+    "createdAt": { "$date": "2025-06-15T18:30:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e101" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e004" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e302" },
+    "review": "Great Italian food but the wait time was a bit long on a Friday night. The tiramisu made up for it though!",
+    "rating": 4,
+    "createdAt": { "$date": "2025-07-02T20:15:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e101" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e005" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e303" },
+    "review": "The pasta was overcooked and the sauce lacked depth. Expected more for this price point.",
+    "rating": 5,
+    "createdAt": { "$date": "2025-07-20T19:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e101" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e007" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e304" },
+    "review": "Fine dining done right. Every detail from the ambiance to the wine pairing was exceptional.",
+    "rating": 5,
+    "createdAt": { "$date": "2025-08-10T21:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e101" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e006" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e305" },
+    "review": "The freshest sushi I've had outside of Japan. The salmon nigiri melts in your mouth. Highly recommend!",
+    "rating": 5,
+    "createdAt": { "$date": "2025-06-25T13:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e102" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e005" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e306" },
+    "review": "Good sushi but small portions for the price. Miso soup was perfect though. Would come back for lunch.",
+    "rating": 4,
+    "createdAt": { "$date": "2025-07-18T12:30:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e102" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e004" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e307" },
+    "review": "Solid Japanese cuisine. The matcha ice cream was a delightful end to the meal.",
+    "rating": 4.5,
+    "createdAt": { "$date": "2025-08-22T14:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e102" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e007" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e308" },
+    "review": "Best butter chicken in the city, hands down. The naan was soft and perfectly charred. Great value for money!",
+    "rating": 5,
+    "createdAt": { "$date": "2025-07-05T19:45:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e103" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e004" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e309" },
+    "review": "Authentic flavors and generous portions. The samosas were crispy and the mango lassi was refreshing.",
+    "rating": 4,
+    "createdAt": { "$date": "2025-08-14T18:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e103" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e007" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e310" },
+    "review": "Food was decent but the restaurant was too noisy. Spice level was good though.",
+    "rating": 3.5,
+    "createdAt": { "$date": "2025-09-01T20:30:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e103" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e005" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e311" },
+    "review": "The kung pao chicken had a great kick! Authentic Sichuan flavors. The spring rolls were average though.",
+    "rating": 4,
+    "createdAt": { "$date": "2025-08-03T13:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e104" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e004" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e312" },
+    "review": "Underwhelming. Food was lukewarm when it arrived and the portions were tiny.",
+    "rating": 3.5,
+    "createdAt": { "$date": "2025-09-10T19:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e104" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e007" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e313" },
+    "review": "These are THE BEST tacos I've ever had! The carnitas were so tender and the salsa verde was perfection. Absolute must-visit!",
+    "rating": 5,
+    "createdAt": { "$date": "2025-08-20T14:30:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e105" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e007" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e314" },
+    "review": "Incredible guacamole — made fresh at the table! The horchata was creamy and delicious. Coming back every week.",
+    "rating": 5,
+    "createdAt": { "$date": "2025-09-05T13:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e105" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e004" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e315" },
+    "review": "Lively atmosphere and fantastic food. The only reason it's not 5 stars is the 45-minute wait for a table.",
+    "rating": 4.5,
+    "createdAt": { "$date": "2025-09-22T19:30:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e105" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e005" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e316" },
+    "review": "Pad Thai was bursting with flavor. Excellent balance of sweet, sour, and spicy. Very authentic!",
+    "rating": 4.5,
+    "createdAt": { "$date": "2025-08-28T12:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e106" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e005" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e317" },
+    "review": "Tom Yum soup was heavenly! Great place for a quick and affordable Thai meal. Staff was friendly.",
+    "rating": 4,
+    "createdAt": { "$date": "2025-09-15T18:45:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e106" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e004" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e318" },
+    "review": "The lamb chops were cooked to perfection. The Mediterranean atmosphere with live music on weekends is wonderful.",
+    "rating": 5,
+    "createdAt": { "$date": "2025-10-01T20:00:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e107" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e007" }
+  },
+  {
+    "_id": { "$oid": "6f8d04b3ab35de0017f2e319" },
+    "review": "Elegant dining experience. The hummus platter was a great start and the baklava was divine. Pricey but worth it.",
+    "rating": 4,
+    "createdAt": { "$date": "2025-10-15T19:30:00.000Z" },
+    "restaurant": { "$oid": "6f8d04b3ab35de0017f2e107" },
+    "user": { "$oid": "6f8d04b3ab35de0017f2e004" }
+  }
+]

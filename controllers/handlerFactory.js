@@ -42,8 +42,6 @@ exports.create = (Model) =>
 
 exports.getOne = (Model, populateOptions) =>
   catchAsync(async (req, res, next) => {
-    console.log(req.params.id);
-    console.log(populateOptions);
     const doc = await Model.findById(req.params.id).populate(populateOptions);
 
     if (!doc) return next(new appError('No Document found with that id', 404));
