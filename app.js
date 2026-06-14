@@ -12,6 +12,7 @@ const app = express();
 const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
 const path = require('path');
+const viewRouter = require('./routes/viewRoutes');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -58,14 +59,8 @@ app.use(
   }),
 );
 
-app.use('/', (req, res) => {
-  res.status(200).render('base', {
-    tour: 'The forest hiker',
-    user: 'abm',
-  });
-});
 // MOUNTING ROUTERS
-
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
