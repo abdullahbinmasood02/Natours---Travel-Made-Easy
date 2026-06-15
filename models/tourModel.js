@@ -145,6 +145,12 @@ tourSchema.virtual('reviews', {
   foreignField: 'tour',
   localField: '_id',
 });
+
+tourSchema.pre('save', function (next) {
+  const slug = slugify(this.name, { lower: true });
+  this.slug = slug;
+  next();
+});
 tourSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'guides',
