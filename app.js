@@ -13,6 +13,7 @@ const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
 const path = require('path');
 const viewRouter = require('./routes/viewRoutes');
+const cookieParser = require('cookie-parser');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +34,7 @@ app.use('/api', limiter);
 //body parser
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
 
 //data sanitization against noSQL query injection
 
@@ -44,6 +46,11 @@ app.use(xss());
 
 //serving static files
 app.use(express.static(`${__dirname}/public`));
+
+app.use((req, res, next) => {
+  console.log(req.cookies);
+  next();
+});
 
 //preventing parameter pollution
 app.use(

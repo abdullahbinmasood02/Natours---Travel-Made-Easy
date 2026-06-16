@@ -14,13 +14,19 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getTour = catchAsync(async (req, res) => {
+exports.getTour = catchAsync(async (req, res, next) => {
   const tour = await tourModel
     .findOne({ slug: req.params.slug })
     .populate({ path: 'reviews', fields: 'review rating user' });
 
   res.status(200).render('tour', {
-    title: tour.name,
+    title: `${tour.name} tour`,
     tour,
   });
 });
+
+exports.login = (req, res) => {
+  res.status(200).render('login', {
+    title: 'Log into your account',
+  });
+};

@@ -53,9 +53,9 @@ exports.login = catchAsync(async (req, res, next) => {
   const user = await userModel.findOne({ email }).select('+password');
 
   if (user && (await user.correctPassword(user.password, password))) {
-    createSendToken(user, 201, res);
+    createSendToken(user, 200, res);
   } else {
-    return next(new AppError('Incorrect email or password', 400));
+    return next(new AppError('Incorrect email or password', 404));
   }
 });
 
@@ -67,8 +67,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
-  }
-
+  } else if (req.cookies.jwt) token = req.cookies.jwt;
   if (!token) {
     return next(
       new AppError('You are not logged in. Please login to get access', 401),
@@ -107,6 +106,32 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+//only for rendered pages, no errors, just to check if user is logged in or not
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  let token;
+  //check if token exists
+  if (req.cookies.jwt) {
+    // verify token
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+    );
+
+    //check if user still exists
+    const freshUser = await userModel.findById(decoded.id);
+    if (!freshUser) return next();
+
+    //check if user changed password after the token was issued
+    if (freshUser.changedPasswordAfter(decoded.iat * 1000)) {
+      return next();
+    }
+    //if all pass, there is a logged in user
+    res.locals.user = freshUser;
+
+    next();
+  } else next();
+});
 
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   //1. get user based on posted email
